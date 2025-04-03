@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+    <h1>Регистрация</h1>
+
+    {% if not code_sent %}
+        <form method="post" action="{% url 'send_sms' %}">
+            {% csrf_token %}
+            <label for="phone">Номер телефона:</label>
+            <input type="text" id="phone" name="phone" placeholder="+79991234567" required>
+            <button type="submit">Отправить код</button>
+        </form>
+    {% else %}
+        <form method="post" action="{% url 'verify_code' %}">
+            {% csrf_token %}
+            <label for="code">Код из SMS:</label>
+            <input type="text" id="code" name="code" required>
+            <button type="submit">Подтвердить</button>
+        </form>
+    {% endif %}
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
