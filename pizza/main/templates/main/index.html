@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +12,25 @@
         <span class="logo">ДОДО-ПИЦЦА</span>
         <nav>
             <ul>
-                <li class="button">
-                    <a href="#" id="open_pop_up">Войти</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="user-info">
+                        <span class="user-email">{{ user.email }}</span>
+                        <a href="/logout/" class="logout-btn">Выйти</a>
+                    </li>
+                {% else %}
+                    <li class="button">
+                        <a href="#" id="open_pop_up">Войти</a>
+                    </li>
+                {% endif %}
                 <li><a href="#">Контакты</a></li>
                 <li><a href="#">О нас</a></li>
             </ul>
         </nav>
     </header>
-    
+
     <div class="popular container">
         <h2>Часто заказывают</h2>
-        
+
         <div class="pizza">
             <div class="block">
                 <img src="{% static 'main/img/peperoni.jpeg' %}" alt="">
@@ -60,7 +67,7 @@
 
     <div class="pizzza container">
         <h3>Пиццы</h3>
-        
+
         <div class="pizza2">
             <div class="block">
                 <img src="{% static 'main/img/peperoni.jpeg' %}" alt="">
@@ -130,7 +137,7 @@
 
     <div class="snack container">
         <h4>Закуски</h4>
-        
+
         <div class="snack1">
             <div class="block">
                 <img src="{% static 'main/img/dodster.jpeg' %}" alt="">
@@ -200,7 +207,7 @@
 
     <div class="drinks container">
         <h5>Напитки</h5>
-        
+
         <div class="drinks1">
             <div class="block">
                 <img src="{% static 'main/img/cola.jpg' %}" alt="">
@@ -249,32 +256,29 @@
     </div>
 
     <div class="pop_up" id="pop_up">
-    <div class="pop_up_container">
-        <div class="pop_up_body">
-            <!-- Шаг 1: Ввод email -->
-            <div id="email_step">
-                <p>Вход на сайт</p>
-                <form id="auth_form">
-                    <input type="email" placeholder="Ваш email" required>
-                    <button type="submit">Выслать код</button>
-                </form>
-            </div>
+        <div class="pop_up_container">
+            <div class="pop_up_body">
+                <div id="email_step">
+                    <p>Вход на сайт</p>
+                    <form id="auth_form">
+                        <input type="email" placeholder="Ваш email" required>
+                        <button type="submit">Выслать код</button>
+                    </form>
+                </div>
 
-            <!-- Шаг 2: Ввод кода -->
-            <div id="code_step" style="display: none;">
-                <p>Введите код подтверждения</p>
-                <form id="code_form">
-                    <input type="text" placeholder="4-значный код" required>
-                    <button type="submit">Подтвердить</button>
-                </form>
-            </div>
+                <div id="code_step" style="display: none;">
+                    <p>Введите код подтверждения</p>
+                    <form id="confirm_form">
+                        <input type="text" placeholder="4-значный код" required>
+                        <button type="submit">Подтвердить</button>
+                    </form>
+                </div>
 
-            <div class="pop_up_close" id="pop_up_close">&#10006</div>
+                <div class="pop_up_close" id="pop_up_close">&#10006</div>
+            </div>
         </div>
     </div>
-</div>
 
     <script src="{% static 'main/js/scripts.js' %}"></script>
-
 </body>
 </html>

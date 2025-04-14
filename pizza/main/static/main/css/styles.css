@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght:@400;500;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
 
 * {
     margin: 0;
@@ -32,7 +32,6 @@ header .logo {
     text-transform: uppercase;
     font-size: 30px;
     font-weight: 700;
-
 }
 
 header nav {
@@ -40,7 +39,6 @@ header nav {
     width: 30%;
     font-size: 20px;
     font-weight: 500;
-
 }
 
 header nav ul {
@@ -66,7 +64,32 @@ header nav ul li.button a {
     padding: 9px 17px;
     border-radius: 10px;
     transition: all 500ms ease;
+}
 
+/* Стили для авторизованного пользователя */
+header nav ul li.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-email {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #040303;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    color: #DC7000;
 }
 
 .popular{
@@ -117,7 +140,6 @@ header nav ul li.button a {
 
 .popular .pizza .l33 l3.btn a:hover {
     background: #b96103;
-
 }
 
 .popular .pizza .l33 l3 a{
@@ -126,14 +148,6 @@ header nav ul li.button a {
 .popular .pizza img {
     width: 400px;
 }
-
-
-
-
-
-
-
-
 
 .pizzza{
     padding-bottom: 300px;
@@ -182,7 +196,6 @@ header nav ul li.button a {
 
 .pizzza .pizza2 .l33 l3.btn a:hover {
     background: #b96103;
-
 }
 
 .pizzza .pizza2 .l33 l3 a{
@@ -191,7 +204,6 @@ header nav ul li.button a {
 .pizzza .pizza2 img {
     width: 400px;
 }
-
 
 .pizzza .pizza3 {
     display: flex;
@@ -231,7 +243,6 @@ header nav ul li.button a {
 
 .pizzza .pizza3 .l33 l3.btn a:hover {
     background: #b96103;
-
 }
 
 .pizzza .pizza3 .l33 l3 a{
@@ -240,14 +251,6 @@ header nav ul li.button a {
 .pizzza .pizza3 img {
     width: 400px;
 }
-
-
-
-
-
-
-
-
 
 .snack{
     padding-bottom: 300px;
@@ -296,7 +299,6 @@ header nav ul li.button a {
 
 .snack .snack1 .l33 l3.btn a:hover {
     background: #b96103;
-
 }
 
 .snack .snack1 .l33 l3 a{
@@ -305,7 +307,6 @@ header nav ul li.button a {
 .snack .snack1 img {
     width: 400px;
 }
-
 
 .snack .snack2 {
     display: flex;
@@ -345,7 +346,6 @@ header nav ul li.button a {
 
 .snack .snack2 .l33 l3.btn a:hover {
     background: #b96103;
-
 }
 
 .snack .snack2 .l33 l3 a{
@@ -354,10 +354,6 @@ header nav ul li.button a {
 .snack .snack2 img {
     width: 400px;
 }
-
-
-
-
 
 .drinks{
     padding-bottom: 300px;
@@ -406,7 +402,6 @@ header nav ul li.button a {
 
 .drinks .drinks1 .l33 l3.btn a:hover {
     background: #b96103;
-
 }
 
 .drinks .drinks1 .l33 l3 a{
@@ -415,12 +410,6 @@ header nav ul li.button a {
 .drinks .drinks1 img {
     width: 400px;
 }
-
-
-
-
-
-
 
 footer {
     padding: 100px 0;
@@ -431,7 +420,6 @@ footer .logo {
     font-size: 30px;
     font-weight: 500;
     color: #fff;
-
 }
 
 footer nav {
@@ -439,7 +427,6 @@ footer nav {
     width: 30%;
     font-size: 20px;
     font-weight: 500;
-
 }
 
 footer nav ul {
@@ -475,7 +462,7 @@ footer nav ul li:hover{
     border: 1px solid #000;
     opacity: 1;
     z-index: 9999;
-  }
+}
 
 .pop_up {
     display: none;
@@ -492,7 +479,6 @@ footer nav ul li:hover{
     display: flex;
     width: 100%;
     height: 90%;
-
 }
 
 .pop_up_body {
@@ -503,14 +489,12 @@ footer nav ul li:hover{
     text-align: center;
     padding: 50px 15px 60px 15px;
     position: relative;
-
 }
 
 .pop_up_body p {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 40px;
-
 }
 
 .pop_up_body input {
@@ -524,7 +508,6 @@ footer nav ul li:hover{
     font-weight: 500;
     font-size: 18px;
     color: #89909F;
-
 }
 
 .pop_up_body input:focus {
@@ -544,7 +527,6 @@ footer nav ul li:hover{
     font-size: 20px;
     border: none;
     color: #fff;
-    
 }
 
 .pop_up_body button:hover {
@@ -586,4 +568,74 @@ button[type="submit"] {
 button[type="submit"]:disabled {
     background: #ccc;
     cursor: not-allowed;
+}
+
+/* Дополнительные стили для авторизации */
+#auth_form, #confirm_form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#code_step {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    padding: 0 40px;
+}
+
+/* Адаптация кнопки входа для авторизованного состояния */
+header nav ul li.user-info {
+    padding: 9px 17px;
+    border-radius: 10px;
+    background-color: rgba(233, 236, 241, 0.5);
+}
+
+/* Стили для шапки с пользователем */
+header nav ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #f5f5f5;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.user-email {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.logout-btn {
+    background: #FA9021;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background: #b96103;
+}
+
+/* Для кнопок "Контакты" и "О нас" */
+header nav ul li:not(.user-info) a {
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+header nav ul li:not(.user-info) a:hover {
+    background-color: #f5f5f5;
 }
