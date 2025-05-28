@@ -8,4 +8,5 @@ urlpatterns = [
     path('send-code/', views.send_auth_code, name='send_code'),
     path('verify-code/', views.verify_code, name='verify_code'),
     path('logout/', views.logout_view, name='logout'),
+    path('save_address/', views.save_address, name='save_address'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

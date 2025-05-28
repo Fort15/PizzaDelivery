@@ -23,7 +23,10 @@ class CustomUser(AbstractUser):
     email = models.EmailField('Email', unique=True)
     full_name = models.CharField('ФИО', max_length=100, blank=True)
     phone = models.CharField('Телефон', max_length=20, blank=True)
-    address = models.TextField('Адрес', blank=True)
+    address = models.CharField('Адрес', max_length=255, blank=True, null=True)
+    apartment = models.CharField('Квартира', max_length=10, blank=True, null=True)
+    entrance = models.CharField('Подъезд', max_length=10, blank=True, null=True)
+    floor = models.CharField('Этаж', max_length=3, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []  # Поля, требуемые для createsuperuser (кроме email и password)
@@ -32,3 +35,8 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    def get_full_address(self):
+        if self.address:
+            return f"{self.address}, кв. {self.apartment}, подъезд {self.entrance}, этаж {self.floor}"
+        return "Адрес не указан"

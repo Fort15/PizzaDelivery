@@ -1,13 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
+from .models import CustomUser  # или UserProfile
 
-
-class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    phone_number = forms.CharField(max_length=15, required=False)
-    address = forms.CharField(max_length=255, required=False)
-
+class AddressForm(forms.ModelForm):
     class Meta:
-        model = CustomUser
-        fields = ('username', 'email', 'phone_number', 'address', 'password1', 'password2')
+        model = CustomUser  # или UserProfile
+        fields = ['address', 'apartment', 'floor']
