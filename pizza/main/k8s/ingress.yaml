@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: danyahachenkopizzaonline  # Замените на ваш домен
+  - host: # Замените на ваш домен
     http:
       paths:
       - path: /
