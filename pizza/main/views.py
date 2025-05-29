@@ -69,6 +69,7 @@ def save_address(request):
             data = json.loads(request.body)
             request.user.address = data.get('address')
             request.user.apartment = data.get('apartment')
+            request.user.entrance = data.get('entrance')
             request.user.floor = data.get('floor')
             request.user.save()
             return JsonResponse({'success': True})

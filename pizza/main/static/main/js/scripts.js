@@ -449,4 +449,37 @@ document.addEventListener('DOMContentLoaded', function() {
             showError('Ошибка при сохранении адреса');
         });
     });
+
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function () {
+            if (cart.length === 0) {
+                showError('Корзина пуста!');
+                return;
+            }
+            // 2. Собираем данные корзины
+            fetch('/orders/create/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: JSON.stringify({
+                    items: cart
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect_url) {
+                        window.location.href = data.redirect_url; // Редирект на оплату ЮMoney
+                    } else if (data.error) {
+                        showError(data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showError('Ошибка при оформлении заказа');
+                });
+        });
+    }
 });

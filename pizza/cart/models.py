@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import CustomUser
-from main.models import Product  # Предполагаем, что у тебя есть модель пиццы
+from main.models import Product
 
 class Cart(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
