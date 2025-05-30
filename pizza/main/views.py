@@ -6,10 +6,15 @@ from django.http import JsonResponse
 from accounts.models import CustomUser
 from django.views.decorators.csrf import csrf_exempt
 import json
+from .models import Product
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    products = Product.objects.select_related('category').all()
+    categories = {}
+    for product in products:
+        categories.setdefault(product.category.name, []).append(product)
+    return render(request, 'main/index.html', {'categories': categories})
 
 
 def send_auth_code(request):

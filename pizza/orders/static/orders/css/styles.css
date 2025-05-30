@@ -1,0 +1,196 @@
+:root {
+    --main-orange: #ff9800;
+    --main-orange-dark: #ff8800;
+    --main-bg: #fff7e6;
+    --border-radius: 18px;
+}
+body {
+    background: linear-gradient(135deg, #fff7e6 0%, #ffe0b2 100%);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    color: #22223b;
+}
+header {
+    background: var(--main-orange);
+    color: #fff;
+    padding: 24px 0 16px 0;
+    box-shadow: 0 4px 16px rgba(255, 152, 0, 0.09);
+    text-align: center;
+}
+nav {
+    margin-top: 8px;
+}
+nav a {
+    background: #fff;
+    color: var(--main-orange);
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 18px;
+    margin: 0 6px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    border: 1px solid var(--main-orange);
+}
+nav a:hover {
+    background: var(--main-orange);
+    color: #fff;
+}
+.container {
+    max-width: 600px;
+    margin: 36px auto 0 auto;
+    background: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 14px rgba(255, 152, 0, 0.10);
+    padding: 32px 28px 32px 28px;
+}
+h2 {
+    margin-top: 0;
+    letter-spacing: 1px;
+    color: var(--main-orange-dark);
+    font-size: 2rem;
+}
+ul.orders-list {
+    list-style: none;
+    padding: 0;
+}
+ul.orders-list li {
+    background: #fff3e0;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    padding: 18px;
+    box-shadow: 0 1px 5px rgba(255, 152, 0, 0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.08rem;
+}
+.order-info {
+    display: flex;
+    flex-direction: column;
+}
+.order-id {
+    font-weight: 600;
+    color: var(--main-orange-dark);
+}
+.order-date {
+    font-size: 0.95em;
+    color: #b26a00;
+    margin-top: 2px;
+}
+.order-amount {
+    background: var(--main-orange);
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 1.1em;
+    box-shadow: 0 1px 5px rgba(255, 152, 0, 0.13);
+}
+.order-items-btn {
+    margin-left: 18px;
+    padding: 7px 16px;
+    border: none;
+    border-radius: 8px;
+    background: var(--main-orange-dark);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.98em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.order-items-btn:hover {
+    background: #ffac33;
+}
+.empty-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #b26a00;
+    margin-top: 40px;
+}
+/* Модальное окно */
+.modal-bg {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 152, 0, 0.16);
+    z-index: 1000;
+}
+.modal {
+    background: #fff;
+    max-width: 420px;
+    margin: 70px auto;
+    padding: 24px 30px 18px 30px;
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(255, 152, 0, 0.15);
+    position: relative;
+}
+#close-modal {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 21px;
+    color: var(--main-orange-dark);
+}
+.modal h3 {
+    margin: 0 0 12px 0;
+    color: var(--main-orange-dark);
+}
+.items-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.items-list li {
+    display: flex;
+    align-items: center;
+    padding: 7px 0;
+    border-bottom: 1px solid #ffe0b2;
+}
+.items-list li:last-child {
+    border-bottom: none;
+}
+.item-name {
+    color: #b26a00;
+    font-weight: 500;
+    flex: 1 1 auto;
+    min-width: 0;
+    word-break: break-word;
+}
+.item-count {
+    color: #444;
+    font-size: 0.95em;
+    width: 45px;
+    text-align: center;
+    flex: 0 0 45px;
+}
+.item-price {
+    color: var(--main-orange-dark, #ff8800);
+    font-weight: bold;
+    margin-left: 8px;
+    width: 70px;
+    text-align: right;
+    flex: 0 0 70px;
+}
+
+.order-status {
+    font-weight: 600;
+    font-size: 0.99em;
+    margin-bottom: 4px;
+    margin-top: 2px;
+    display: inline-block;
+    border-radius: 6px;
+    padding: 3px 12px;
+}
+.order-status-paid {
+    color: #1fa463;
+    background: #e5fbe8;
+    border: 1px solid #1fa463;
+}
+.order-status-completed {
+    color: #b0b0b0;
+    background: #f2f2f2;
+    border: 1px solid #d0d0d0;
+}

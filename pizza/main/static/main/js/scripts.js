@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartItems = document.getElementById('cart-items');
     const cartCount = document.querySelector('.cart-count');
     const totalPrice = document.getElementById('total-price');
+    const clearCartBtn = document.getElementById('clear-cart');
 
     // Открытие/закрытие корзины
     cartIcon.addEventListener('click', function() {
@@ -17,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Добавление в корзину
     document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
             const productId = this.dataset.productId;
             const productName = this.dataset.productName;
             const price = parseInt(this.dataset.price);
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             updateCart();
+            showSuccess('Товар добавлен в корзину');
         });
     });
 
@@ -317,10 +320,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const saveAddressBtn = document.getElementById('save-address');
     const addressInput = document.getElementById('address-input');
 
-    // Обработчик для "Мои заказы"
-    showOrdersBtn?.addEventListener('click', function() {
-        alert('Здесь будет история заказов!');
-    });
 
     // Обработчик для "Изменить адрес"
     changeAddressBtn?.addEventListener('click', function() {
@@ -383,33 +382,6 @@ document.addEventListener('DOMContentLoaded', function() {
         script.src = 'https://api-maps.yandex.ru/2.1/?apikey=31d3d10c-8c1c-44c6-8d66-4b94fda82d88&lang=ru_RU';
         document.head.appendChild(script);
     }
-
-    // Обработчики для "Добавить в корзину"
-    document.querySelectorAll('.btn a').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const block = this.closest('.block');
-            const productName = block.querySelector('l1').textContent;
-            const price = parseInt(block.querySelector('l2').textContent);
-            const productId = productName.toLowerCase().replace(/\s+/g, '-');
-
-            // Добавляем товар в корзину
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    id: productId,
-                    name: productName,
-                    price: price,
-                    quantity: 1
-                });
-            }
-
-            updateCart();
-            showSuccess('Товар добавлен в корзину');
-        });
-    });
 
     document.getElementById('save-address').addEventListener('click', function() {
         const address = document.getElementById('address-input').value;
@@ -480,6 +452,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error('Error:', error);
                     showError('Ошибка при оформлении заказа');
                 });
+        });
+    }
+    if (clearCartBtn) {
+        clearCartBtn.addEventListener('click', function() {
+            cart = [];
+            updateCart();
+            showSuccess('Корзина очищена');
         });
     }
 });

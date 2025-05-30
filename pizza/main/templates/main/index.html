@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PizzaDeliveryClub</title>
-    <link rel="stylesheet" href="{% static 'static/main/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
 </head>
 <body>
     <header class="container">
         <div id="notification" class="notification-hidden">Адрес сохранён!</div>
-        <span class="logo">ДОДО-ПИЦЦА</span>
+        <span class="logo">Pizza House</span>
         <nav>
             <ul>
                 {% if user.is_authenticated %}
@@ -52,224 +52,37 @@
         </nav>
     </header>
 
-
-    <div class="popular container">
-        <h2>Часто заказывают</h2>
-
-        <div class="pizza">
+    {# ---- Категории и товары ---- #}
+    {% for category, products in categories.items %}
+    <div class="container">
+        <h2 style="font-size:32px; margin-bottom: 24px;">{{ category }}</h2>
+        <div class="products-list">
+            {% for product in products %}
             <div class="block">
-                <img src="{% static 'main/img/products/peperoni.jpeg' %}" alt="">
+                <img src="{% static product.image %}" alt="{{ product.name }}">
                 <span class="l12">
-                    <l1>Пепперони фреш<p></p></l1>
-                    <l2>365 р.<p></p></l2>
+                    <l1>{{ product.name }}</l1>
+                    <l2>{{ product.price }} р.</l2>
                 </span>
                 <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
+                    <l3 class="btn">
+                        <a href="#" class="add-to-cart"
+                           data-product-id="{{ product.id }}"
+                           data-product-name="{{ product.name }}"
+                           data-price="{{ product.price }}">
+                            Добавить в корзину
+                        </a>
+                    </l3>
                 </span>
             </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/dodster.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Додстер<p></p></l1>
-                    <l2>150 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/cola.jpg' %}" alt="">
-                <span class="l12">
-                    <l1>Кола<p></p></l1>
-                    <l2>65 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
+            {% endfor %}
         </div>
     </div>
-
-    <div class="pizzza container">
-        <h3>Пиццы</h3>
-
-        <div class="pizza2">
-            <div class="block">
-                <img src="{% static 'main/img/products/peperoni.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Пепперони фреш<p></p></l1>
-                    <l2>365 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/peperoni.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Пепперони фреш<p></p></l1>
-                    <l2>365 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/peperoni.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Пепперони фреш<p></p></l1>
-                    <l2>365 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-        </div>
-
-        <div class="pizza3">
-            <div class="block">
-                <img src="{% static 'main/img/products/peperoni.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Пепперони фреш<p></p></l1>
-                    <l2>365 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/peperoni.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Пепперони фреш<p></p></l1>
-                    <l2>365 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/peperoni.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Пепперони фреш<p></p></l1>
-                    <l2>365 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="snack container">
-        <h4>Закуски</h4>
-
-        <div class="snack1">
-            <div class="block">
-                <img src="{% static 'main/img/products/dodster.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Додстер<p></p></l1>
-                    <l2>150 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/dodster.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Додстер<p></p></l1>
-                    <l2>150 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/dodster.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Додстер<p></p></l1>
-                    <l2>150 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-        </div>
-
-        <div class="snack2">
-            <div class="block">
-                <img src="{% static 'main/img/products/dodster.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Додстер<p></p></l1>
-                    <l2>150 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/dodster.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Додстер<p></p></l1>
-                    <l2>150 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/dodster.jpeg' %}" alt="">
-                <span class="l12">
-                    <l1>Додстер<p></p></l1>
-                    <l2>150 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="drinks container">
-        <h5>Напитки</h5>
-
-        <div class="drinks1">
-            <div class="block">
-                <img src="{% static 'main/img/products/cola.jpg' %}" alt="">
-                <span class="l12">
-                    <l1>Кола<p></p></l1>
-                    <l2>65 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/cola.jpg' %}" alt="">
-                <span class="l12">
-                    <l1>Кола<p></p></l1>
-                    <l2>65 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-            <div class="block">
-                <img src="{% static 'main/img/products/cola.jpg' %}" alt="">
-                <span class="l12">
-                    <l1>Кола<p></p></l1>
-                    <l2>65 р.<p></p></l2>
-                </span>
-                <span class="l33">
-                    <l3 class="btn"><a href="#">Добавить в корзину</a></l3>
-                </span>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 
     <div class="wrapper">
         <footer class="container">
-            <span class="logo">ДОДО-ПИЦЦА</span>
+            <span class="logo">Pizza House</span>
             <nav>
                 <ul>
                     <li><a href="#">Работа</a></li>
@@ -289,8 +102,8 @@
         </div>
         <div class="cart-total">Итого: <span id="total-price">0</span> руб.</div>
         <button class="checkout-btn">Оформить заказ</button>
+        <button id="clear-cart" type="button" class="clear-cart-btn">Очистить корзину</button>
     </div>
-
 
     <div class="pop_up" id="pop_up">
         <div class="pop_up_container">

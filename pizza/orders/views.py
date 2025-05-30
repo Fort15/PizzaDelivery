@@ -6,6 +6,8 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
+from django.db.models import Case, When, IntegerField
+
 
 @csrf_exempt
 @login_required
@@ -55,12 +57,19 @@ def payment_callback(request):
 
 @login_required
 def my_orders(request):
-    orders_active = Order.objects.filter(user=request.user, status='active')
-    orders_completed = Order.objects.filter(user=request.user, status='completed')
-    return render(request, "orders/my_orders.html", {
-        "orders_active": orders_active,
-        "orders_completed": orders_completed,
-    })
+    orders = Order.objects.filter(
+        user=request.user,
+        status__in=['active', 'completed']
+    ).order_by(
+        Case(
+            When(status='active', then=0),
+            When(status='completed', then=1),
+            default=2,
+            output_field=IntegerField()
+        ),
+        '-created_at'
+    )
+    return render(request, 'orders/my_orders.html', {'orders': orders})
 
 @csrf_exempt
 def yoomoney_webhook(request):
@@ -92,11 +101,6 @@ def complete_order(request):
         order.save()
         return render(request, 'orders/complete_success.html', {'order': order})
     return render(request, 'orders/complete_form.html')
-
-@login_required
-def my_orders(request):
-    orders = Order.objects.filter(user=request.user, status='active').order_by('-created_at')
-    return render(request, 'orders/my_orders.html', {'orders': orders})
 
 @login_required
 def order_items_json(request, order_id):
